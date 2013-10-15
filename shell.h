@@ -12,6 +12,7 @@ int shell(void)
     bool init=false;
     unsigned which;
     struct matrix A;
+    int d;
     std::string functions[9]={"print","trace","det","reenter","exit","quit","ero","help"};
 
     // User welcome! Everybody likes that!
@@ -74,13 +75,17 @@ int shell(void)
                     std::cout << "Not a valid command.\n";
                     break;
                 case 1: // "print" function, outputs the matrix nicely.
-                    printmatrix(A.n,A.values);
+                    printmatrix(A.m,A.n,A.values);
                     break;
                 case 2: // "trace" function of the matrix.
-                    std::cout << "tr(A) = " << trace(A.n,A.values);
+                    d=trace(A.m,A.n,A.values);
+                    if (d!=-3200)
+                        std::cout << "tr(A) = " << d;
                     break;
                 case 3: // "det" (determinant) function of the matrix.
-                    std::cout << "det(A) = " << det(A.n,A.values);
+                    d=det(A.m,A.n,A.values);
+                    if (d!=-3200)
+                        std::cout << "det(A) = " << d;
                     break;
                 case 4: // Matrix (re)entry.
                     A=initialize();

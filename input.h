@@ -32,10 +32,10 @@ int typeinput(std::string input)
 int** matrixmake(int m, int n)
 {
     int **matrix;
-    matrix =new int *[n];
-    for (int i=0;i<n;i++)
+    matrix = new int *[m];
+    for (int i=0;i<m;i++)
     {
-        matrix[i]=new int[m];
+        matrix[i]=new int[n];
     }
     return matrix;
 }
@@ -49,25 +49,31 @@ struct matrix matrixinput(std::string input)
     int j=0;
     int p=0;
     int n=0;
-    unsigned m=0;
+    int m=1;
+    int q=0;
 
-    // Finds out the size of the matrix (so far only square matrices are supported.
-    while (m<input.length())
+    // Finds out the size of the matrix (so far only square matrices are supported.)
+    while (q<input.length())
     {
         //Interprets the sequence "[[" as the beginning of the matrix.
-        if ((input.at(m)=='[')&&(input.at(m+1)=='['))
+        if ((input.at(q)=='[')&&(input.at(q+1)=='['))
             n=0;
-        else if ((input.at(m)==']')&&(input.at(m+1)=='['))
-            m=1000; // Forces the loop to end when a line break "][" is detected.
-        else if ((input.at(m)!=',')&&(input.at(m)!=' ')&&(input.at(m)!='[')&&(input.at(m)!=']'))
+        else if ((input.at(q)==']')&&(input.at(q+1)==']'))
+            q=1000;
+        else if ((input.at(q)==']')&&(input.at(q+1)=='['))
+        {
+            m+=1;
+            n=0;
+        }
+        else if ((input.at(q)!=',')&&(input.at(q)!=' ')&&(input.at(q)!='[')&&(input.at(q)!=']'))
             n+=1;
-        m+=1;
+        q+=1;
     }
 
-    // Creates an empty matrix of size nxn.
+    // Creates an empty matrix of size mxn.
     struct matrix A;
     A.n=n;
-    A.m=n;
+    A.m=m;
     A.values=matrixmake(A.m,A.n);
 
     while (i<input.length()-1)
@@ -79,6 +85,7 @@ struct matrix matrixinput(std::string input)
                 // Interprets line breaks "]["
                 i+=1;
                 p=0;
+                j+=1;
             }
             if (input.at(i+1)==']')
                 return A;

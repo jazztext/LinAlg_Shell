@@ -89,7 +89,7 @@ struct matrix eshell(int m, int n, int **matrix)
         }
         else if (operation=="print")
         {
-            printmatrix(A.n,A.values);
+            printmatrix(A.m,A.n,A.values);
         }
         else
         {
