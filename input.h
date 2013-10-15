@@ -9,33 +9,28 @@
 struct matrix {
     int m; // Number of rows
     int n; // Number of columns
-    int **values; //The actual matrix values
+    double **values; //The actual matrix values
 };
 
 /* Process the user input, returns what type of input *
  * Was put in (matrix, vector, or none)               */
 int typeinput(std::string input)
 {
-    if (input.at(0)=='[')
-        {
-            if (input.at(1)=='[')
-                return 1;
-            else
-                return 2;
-        }
+    if ((input.at(0)=='[')&&(input.at(1)=='['))
+        return 1;
     else
-        return 3;
+        return 0;
 }
 
 
 // Initializes a matrix of size mxn.
-int** matrixmake(int m, int n)
+double** matrixmake(int m, int n)
 {
-    int **matrix;
-    matrix = new int *[m];
+    double **matrix;
+    matrix = new double *[m];
     for (int i=0;i<m;i++)
     {
-        matrix[i]=new int[n];
+        matrix[i]=new double[n];
     }
     return matrix;
 }
@@ -52,7 +47,7 @@ struct matrix matrixinput(std::string input)
     int m=1;
     int q=0;
 
-    // Finds out the size of the matrix (so far only square matrices are supported.)
+    // Finds out the size of the matrix
     while (q<input.length())
     {
         //Interprets the sequence "[[" as the beginning of the matrix.

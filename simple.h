@@ -27,9 +27,9 @@ int pi(int *terms, int n)
 }
 
 // Takes the trace of a matrix
-int trace(int m, int n, int **matrix)
+int trace(struct matrix A)
 {
-    if (m!=n)
+    if (A.m!=A.n)
     {
         std::cout << "Trace is undefined for rectangular matrices.";
         return -3200;
@@ -37,27 +37,53 @@ int trace(int m, int n, int **matrix)
     else
     {
         int tr=0;
-        for (int i=0;i<n;i++)
-            tr+=matrix[i][i];
+        for (int i=0;i<A.n;i++)
+            tr+=A.values[i][i];
         return tr;
     }
 }
 
 // Prints a matrix
-void printmatrix(int m, int n, int **matrix)
+void printmatrix(struct matrix A)
 {
     std::cout << "[[ ";
-    for (int i=0;i<m;i++)
+    for (int i=0;i<A.m;i++)
     {
-        for (int j=0;j<n;j++)
+        for (int j=0;j<A.n;j++)
         {
-            std::cout << matrix[i][j] << " ";
+            std::cout << A.values[i][j] << " ";
         }
-        if (i!=m-1) //Just to make the output pretty
+        if (i!=A.m-1) //Just to make the output pretty
             std::cout << "]\n [ ";
         else
             std::cout << "]]";
     }
+}
+
+// Absolute value
+double abs(double a)
+{
+    if (a<0)
+        return (-1)*a;
+    if (a>0)
+        return a;
+}
+
+// Matrix transpose
+struct matrix transpose(struct matrix A)
+{
+    struct matrix B;
+    B.values=matrixmake(A.n,A.m);
+    B.n=A.m;
+    B.m=A.n;
+    for (int i=0;i<A.m;i++)
+    {
+        for (int j=0;j<A.n;j++)
+        {
+            B.values[j][i]=A.values[i][j];
+        }
+    }
+    return B;
 }
 
 #endif

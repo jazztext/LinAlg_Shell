@@ -22,18 +22,11 @@ struct matrix initialize(void)
         A = matrixinput(input);
         return A;
     }
-    else if (type==2)
-    {
-        //int *vect;
-        std::cout << "Note: You have entered a vector.\nVector functionality has not yet been added.\n";
-        //vect = vectorinput(input);
-    }
     else
     {
         std::cout << "Unrecognized input format. Exiting to shell.\n";
         struct matrix B;
         return B;
     }
-
 }
 #endif
