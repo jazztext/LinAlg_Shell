@@ -1,8 +1,10 @@
 #ifndef INIT_H
 #define INIT_H
 
-/* Matrix initialization, will probably   *
- * Be expanded to allow for vector input. */
+/* Matrix Initialization                     *
+ * Allows for matrices of all sizes besides  *
+ * 1x1, and passes the initialized matrix to *
+ * The main shell function.                  */
 
 struct matrix initialize(void)
 {
@@ -16,12 +18,8 @@ struct matrix initialize(void)
         return B;
     }
     int type = typeinput(input);
-    struct matrix A;
     if (type==1)
-    {
-        A = matrixinput(input);
-        return A;
-    }
+        return matrixinput(input);
     else
     {
         std::cout << "Unrecognized input format. Exiting to shell.\n";

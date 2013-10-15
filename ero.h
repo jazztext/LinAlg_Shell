@@ -67,7 +67,7 @@ struct matrix rowplus(int row1, int row2, double c, struct matrix A)
 struct matrix rref(struct matrix A)
 {
     int p=0;
-    for (p;p<A.m;p++)
+    for (p=0;p<A.m;p++)
     {
         if (A.values[p][0]==1)     // Searches for rows that start with 1
         {                          // And rearranges rows so that the first
@@ -126,8 +126,6 @@ struct matrix rref(struct matrix A)
                 A.values[i][j]=0;   // With 0, mainly for nicer output.
         }
     }
-    std::cout << "Reduced Row Echelon Form of A:\n";
-    printmatrix(A); // Print the final matrix
     return A;       // All done!
 }
 

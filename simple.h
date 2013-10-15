@@ -65,8 +65,7 @@ double abs(double a)
 {
     if (a<0)
         return (-1)*a;
-    if (a>0)
-        return a;
+    return a;
 }
 
 // Matrix transpose
@@ -86,4 +85,21 @@ struct matrix transpose(struct matrix A)
     return B;
 }
 
+bool matrixequals(struct matrix A, struct matrix B)
+{
+    if ((A.n!=B.n)||(A.m!=B.m))
+        return false;
+    else
+    {
+        for (int i=0;i<A.m;i++)
+        {
+            for (int j=0;j<A.n;j++)
+            {
+                if (A.values[i][j]!=B.values[i][j])
+                    return false;
+            }
+        }
+        return true;
+    }
+}
 #endif

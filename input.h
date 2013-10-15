@@ -45,7 +45,7 @@ struct matrix matrixinput(std::string input)
     int p=0;
     int n=0;
     int m=1;
-    int q=0;
+    unsigned q=0;
 
     // Finds out the size of the matrix
     while (q<input.length())

@@ -14,7 +14,7 @@ int shell(void)
     struct matrix A;
     int d,row1,row2;
     double c;
-    std::string functions[14]={"print","trace","det","reenter","exit","quit","--","help","rref","swap","scale","scaleadd","transpose"};
+    std::string functions[15]={"print","trace","det","reenter","exit","quit","--","help","rref","swap","scale","scaleadd","transpose","inverse"};
 
     // User welcome! Everybody likes that!
     std::cout << "Welcome to Matrix Calculator!\nType \"help\" for a list of commands.\n";
@@ -110,6 +110,8 @@ int shell(void)
                     break;
                 case 9: // Reduced Row Echelon Form
                     A=rref(A);
+                    std::cout << "Reduced Row Echelon Form of A:\n";
+                    printmatrix(A);
                     break;
                 case 10:
                     std::cout << "R1 <-> R2\n";
@@ -139,6 +141,10 @@ int shell(void)
                     break;
                 case 13:
                     A=transpose(A);
+                    printmatrix(A);
+                    break;
+                case 14:
+                    A=inverse(A);
                     break;
             }
             // Shell prompt again!
