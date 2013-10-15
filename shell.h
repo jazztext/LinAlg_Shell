@@ -21,7 +21,7 @@ int shell(void)
     if (init==false)
     {
         A=initialize();
-        if (A.n!=0)
+        if (A.n<100)
             init=true;
     }
 
@@ -44,7 +44,7 @@ int shell(void)
         else if (input=="enter")
         {
             A=initialize();
-            if (A.n!=0)
+            if (A.n<100)
                 init=true;
             std::cout << "matrix>";
         }
@@ -59,8 +59,7 @@ int shell(void)
         {
             /* If a matrix is found, check if the user input is one *
              * Of the available functions of the shell.             */
-            unsigned i;
-            for (i=0;i<(sizeof(functions)/sizeof(*functions));i++)
+            for (unsigned i=0;i<(sizeof(functions)/sizeof(*functions));i++)
             {
                 if (input==functions[i])
                 {
@@ -101,7 +100,7 @@ int shell(void)
                     {
                         std::cout << functions[i] << " ";
                     }
-                    std::cout << "enter help";
+                    std::cout << "enter";
                     break;
             }
             // Shell prompt again!
